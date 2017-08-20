@@ -1,0 +1,15 @@
+{
+  "presets": [
+    "es2015",
+    "stage-1",
+    ["env", {
+      "targets": {
+        "browsers": ["last 2 versions", "safari >= 7"]
+      },
+      "modules": false
+    }]
+  ],
+  "plugins": [
+    "transform-object-rest-spread"
+  ]
+}
