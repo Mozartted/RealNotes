@@ -1,5 +1,7 @@
 let mix = require('laravel-mix');
-
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const imageminMozjpeg = require('imagemin-mozjpeg');
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -12,4 +14,34 @@ let mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+	.sass('resources/assets/sass/app.scss', 'public/css')
+	.copy('node_modules/font-awesome/fonts', 'public/fonts')
+	.options({
+		processCssUrls: false,
+	})
+	.version()
+	.browserSync({
+		proxy: 'localhost:8080'
+	})
+
+	.webpackConfig({
+		module: {
+			rules: [
+			// With the `import-glob-loader` we can use globs in our import
+			// statements in css
+				{
+					test: /\.css/,
+					loader: 'import-glob-loader',
+					enforce: 'pre',
+				},
+			],
+		},
+
+		plugins: [
+			new CopyWebpackPlugin([{ from: 'resources/assets/images', to: 'img' }]),
+			new ImageminPlugin({
+				test: /\.(jpe?g|png|gif)$/i,
+				plugins: [ imageminMozjpeg({ quality: 70 }) ]
+			})
+		]
+	});
