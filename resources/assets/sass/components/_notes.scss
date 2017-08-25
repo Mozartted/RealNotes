@@ -1,0 +1,65 @@
+.nopadding{
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+}
+.note-container{
+	width: 100%;
+	height: 840px;
+	display: block;
+	background: #ededed;
+	.note-title{
+		width: 100%;
+		height: 100px;
+		padding: 30px;
+		color: #ededed;
+		font-size: 2em;
+		font-weight: bolder;
+		background: #6e6e6e;
+	}
+	.add-note{
+		width: 100%;
+		height: 70px;
+		padding: 10px;
+		color: #ededed;
+		text-align: center;
+		font-size: 1.3em;
+		font-weight: bolder;
+		background: #6e6e6e;
+		cursor: pointer;
+	}
+	.notes-items{
+		width: 100%;
+		height: 70px;
+		padding: 15px;
+		background: #ffffff;
+		// border-top: 0.3px solid #202020;
+		margin-bottom:3px;
+		transition: 0.05s ease 0.05s;
+		&:hover{
+			background:#f3f3f3;
+		}
+	}
+}
+
+.contain{
+	display: flex;
+}
+
+.main-text{
+	width: 100%;
+	height: 100%;
+	outline: none;
+	border:none;
+	padding:15px;
+}
+
+.top-input{
+	border: none;
+	outline: none;
+	width: 100%;
+	height: 70px;
+	font-size: 1.7em;
+	color: #6e6e6e;
+	background: #ededed;
+	padding: 10px;
+}

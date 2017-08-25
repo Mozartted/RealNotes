@@ -15,13 +15,14 @@ const imageminMozjpeg = require('imagemin-mozjpeg');
 
 mix.js('resources/assets/js/app.js', 'public/js')
 	.sass('resources/assets/sass/app.scss', 'public/css')
-	.copy('node_modules/font-awesome/fonts', 'public/fonts')
+	// .copy('node_modules/font-awesome/fonts', 'public/fonts')\
+	.sourceMaps()
 	.options({
 		processCssUrls: false,
 	})
 	.version()
 	.browserSync({
-		proxy: 'localhost:8080'
+		proxy: 'localhost:8000'
 	})
 
 	.webpackConfig({
@@ -37,11 +38,11 @@ mix.js('resources/assets/js/app.js', 'public/js')
 			],
 		},
 
-		plugins: [
-			new CopyWebpackPlugin([{ from: 'resources/assets/images', to: 'img' }]),
-			new ImageminPlugin({
-				test: /\.(jpe?g|png|gif)$/i,
-				plugins: [ imageminMozjpeg({ quality: 70 }) ]
-			})
-		]
+		// plugins: [
+		// 	new CopyWebpackPlugin([{ from: 'resources/assets/images', to: 'img' }]),
+		// 	new ImageminPlugin({
+		// 		test: /\.(jpe?g|png|gif)$/i,
+		// 		plugins: [ imageminMozjpeg({ quality: 70 }) ]
+		// 	})
+		// ]
 	});
