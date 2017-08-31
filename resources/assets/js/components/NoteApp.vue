@@ -1,19 +1,21 @@
 <template>
   <div class="col-md-12 contain nopadding">
-  	<note-sidebar :initialnotes="notes" @noteChosen="noteSelected"></note-sidebar>
-  	<note-editor :note="firstNote"/>
+  	<note-sidebar v-if="notes" :initialnotes="notes" @noteChosen="noteSelected" :user="user"></note-sidebar>
+  	<note-editor v-if="firstNote" :note="firstNote"/>
   </div>
 
 </template>
 <script>
 import NoteEditor from './NoteEditor.vue';
 import NoteSidebar from './NoteSidebar';
+import axios from 'axios';
 
 import _ from 'lodash';
 
 
 export default {
   name: 'note-app',
+  props:['user'],
   components:{
   	NoteEditor,
   	NoteSidebar
@@ -33,21 +35,8 @@ export default {
   },
   data: function(){
     return{
-  	notes:[
-  	{
-  		'title':'The base',
-  		'content':'base Stuffs'
-  	},
-  	{
-  		'title':'The House',
-  		'content':'base Stuffs'
-  	},
-  	{
-  		'title':'The Action',
-  		'content':'base Stuffs'
-  	}
-  	],
-    currentNote:null
+      notes:null,
+      currentNote:null
   }},
 
   methods:{
@@ -55,11 +44,12 @@ export default {
   		this.firstNote = value;
   	}
   },
-
   created() {
     //do something after creating vue instance
-    // this.notes =
-
+    axios.get('/api/notes').then((res)=>{
+      console.log(res.data.data)
+      this.notes = res.data.data;
+    })
   }
 }
 </script>

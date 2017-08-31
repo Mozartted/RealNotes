@@ -13,7 +13,7 @@
     </head>
     <body>
         <div id="app">
-          <note-app/>
+          <note-app :user="{{Auth::user()->toJson()}}"/>
         </div>
         <script type="text/javascript" src="/js/app.js">
 
